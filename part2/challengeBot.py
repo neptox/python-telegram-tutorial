@@ -19,7 +19,7 @@ TOKEN = config.token
 URL = "https://api.telegram.org/bot{}/".format(TOKEN)
 END = "25.07.18"
 DAYS_LEFT = 0
-COMMAND = ""
+COMMAND = "test"
 
 #-----------------------
 
