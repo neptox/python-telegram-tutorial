@@ -150,6 +150,8 @@ def main():
                 #                               print("getting updates")
 
             DAYS_LEFT = days_until()
+            print(DAYS_LEFT)
+            print(daycount)
             if  DAYS_LEFT < daycount:
                 print("update")
                 set_chat_title(-1001138260286, " Tage - Tu Dir Was Gutes")
