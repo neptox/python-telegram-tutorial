@@ -141,25 +141,22 @@ def main():
     last_update_id = None
     daycount = days_until() + 1
     while True:
-        try:
-            print("test1")
-            updates = get_updates(last_update_id)
-            print("test2")
-            if len(updates["result"]) > 0:
-                last_update_id = get_last_update_id(updates) + 1
-                handle_updates(updates)
-                #                               COMMAND = text
-                #                               print("getting updates")
-            print("test3")
-            DAYS_LEFT = days_until()
-            print(DAYS_LEFT)
-            print(daycount)
-            if  DAYS_LEFT < daycount:
-                print("update")
-                set_chat_title(-1001138260286, " Tage - Tu Dir Was Gutes")
+        print("test1")
+        updates = get_updates(last_update_id)
+        print("test2")
+        if len(updates["result"]) > 0:
+            last_update_id = get_last_update_id(updates) + 1
+            handle_updates(updates)
+            #                               COMMAND = text
+            #                               print("getting updates")
+        print("test3")
+        DAYS_LEFT = days_until()
+        print(DAYS_LEFT)
+        print(daycount)
+        if  DAYS_LEFT < daycount:
+            print("update")
+            set_chat_title(-1001138260286, " Tage - Tu Dir Was Gutes")
                 daycount = DAYS_LEFT
-        except KeyError:
-                pass
         time.sleep(1)
 
 
