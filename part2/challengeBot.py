@@ -7,6 +7,7 @@ import requests
 import urllib
 import datetime
 import time
+import config
 from dbhelper import DBHelper
 
 db = DBHelper()
@@ -14,7 +15,7 @@ db = DBHelper()
 #-----------------------
 
 # set arguments for Telegram bot: @ChaIIengeBot
-TOKEN = "603637617:AAF86f8kW73HZPY6gS_QGzFBihWchZ1XWUg"
+TOKEN = config.token
 URL = "https://api.telegram.org/bot{}/".format(TOKEN)
 END = "25.07.18"
 DAYS_LEFT = 0
