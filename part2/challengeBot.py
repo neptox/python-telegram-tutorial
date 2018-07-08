@@ -142,7 +142,6 @@ def main():
     daycount = days_until() + 1
     while True:
         try:
-            print("updates")
             updates = get_updates(last_update_id)
             if len(updates["result"]) > 0:
                 last_update_id = get_last_update_id(updates) + 1
@@ -152,6 +151,7 @@ def main():
 
             DAYS_LEFT = days_until()
             if  DAYS_LEFT < daycount:
+                print("updates")
                 set_chat_title(-1001138260286, " Tage - Tu Dir Was Gutes")
                 daycount = DAYS_LEFT
         except KeyError:
