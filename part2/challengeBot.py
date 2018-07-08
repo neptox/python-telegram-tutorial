@@ -156,7 +156,7 @@ def main():
         if  DAYS_LEFT < daycount:
             print("update")
             set_chat_title(-1001138260286, " Tage - Tu Dir Was Gutes")
-                daycount = DAYS_LEFT
+            daycount = DAYS_LEFT
         time.sleep(1)
 
 
