@@ -151,7 +151,7 @@ def main():
 
             DAYS_LEFT = days_until()
             if  DAYS_LEFT < daycount:
-                print("updates")
+                print("update")
                 set_chat_title(-1001138260286, " Tage - Tu Dir Was Gutes")
                 daycount = DAYS_LEFT
         except KeyError:
