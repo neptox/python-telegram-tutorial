@@ -142,13 +142,15 @@ def main():
     daycount = days_until() + 1
     while True:
         try:
+            print("test1")
             updates = get_updates(last_update_id)
+            print("test2")
             if len(updates["result"]) > 0:
                 last_update_id = get_last_update_id(updates) + 1
                 handle_updates(updates)
                 #                               COMMAND = text
                 #                               print("getting updates")
-
+            print("test3")
             DAYS_LEFT = days_until()
             print(DAYS_LEFT)
             print(daycount)
