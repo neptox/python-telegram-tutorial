@@ -19,7 +19,7 @@ TOKEN = config.token
 URL = "https://api.telegram.org/bot{}/".format(TOKEN)
 END = "25.07.18"
 DAYS_LEFT = 0
-COMMAND = "test"
+COMMAND = ""
 
 #-----------------------
 
@@ -139,7 +139,7 @@ def set_chat_title(chat_id, text):
 def main():
     db.setup()
     last_update_id = None
-    daycount = days_until()
+    daycount = days_until() + 1
     while True:
         try:
             updates = get_updates(last_update_id)
