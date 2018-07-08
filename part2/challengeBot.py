@@ -141,7 +141,6 @@ def main():
     last_update_id = None
     daycount = days_until() + 1
     while True:
-        print(TOKEN)
         updates = get_updates(last_update_id)
 #        if len(updates["result"]) > 0:
 #            last_update_id = get_last_update_id(updates) + 1
@@ -149,8 +148,6 @@ def main():
             #                               COMMAND = text
             #                               print("getting updates")
         DAYS_LEFT = days_until()
-        print(DAYS_LEFT)
-        print(daycount)
         if  DAYS_LEFT < daycount:
             print("update")
             set_chat_title(-1001138260286, "Tu Dir Was Gutes")
