@@ -147,11 +147,13 @@ def main():
     daycount = days_until() + 1
     while True:
         print("watching you")
+        """
         updates = get_updates(last_update_id)
         if len(updates["result"]) > 0:
             last_update_id = get_last_update_id(updates) + 1
             handle_updates(updates)
             print("getting updates")
+        """
         DAYS_LEFT = days_until()
         if  DAYS_LEFT < daycount:
             set_chat_title(-1001138260286, "Tu Dir Was Gutes")
