@@ -38,7 +38,7 @@ def get_json_from_url(url):
 #function get updates from bot
 def get_updates(offset=None):
     #url = URL + "getUpdates?timeout=100"
-    url = URL + "getUpdates"
+    url = URL + "getUpdates?timeout=100"
     if offset:
         url += "&offset={}".format(offset)
     js = get_json_from_url(url)
@@ -147,13 +147,13 @@ def main():
     last_update_id = None
     daycount = days_until() + 1
     while True:
-
+        """
         updates = get_updates(last_update_id)
         if len(updates["result"]) > 0:
             last_update_id = get_last_update_id(updates) + 1
             handle_updates(updates)
             print("getting updates")
-        
+        """
         DAYS_LEFT = days_until()
         if  DAYS_LEFT < daycount:
             print("counting days:")
