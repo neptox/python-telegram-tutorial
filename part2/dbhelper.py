@@ -9,7 +9,7 @@ class DBHelper:
 
     def setup(self):
         tblstmt = "CREATE TABLE IF NOT EXISTS items (description text, owner text)"
-        itemidx = "CREATE INDEX IF NOT EXISTS itemIndex ON items (description ASC)" 
+        itemidx = "CREATE INDEX IF NOT EXISTS itemIndex ON items (description ASC)"
         ownidx = "CREATE INDEX IF NOT EXISTS ownIndex ON items (owner ASC)"
         self.conn.execute(tblstmt)
         self.conn.execute(itemidx)
@@ -32,10 +32,3 @@ class DBHelper:
         stmt = "SELECT description FROM items WHERE owner = (?)"
         args = (owner, )
         return [x[0] for x in self.conn.execute(stmt, args)]
-
-    
-            
-
-
-
-

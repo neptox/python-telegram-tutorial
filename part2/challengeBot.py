@@ -53,37 +53,42 @@ def get_last_update_id(updates):
 #handle updates
 def handle_updates(updates):
     for update in updates["result"]:
-        text = update["message"]["text"]
-        chat = update["message"]["chat"]["id"]
-        items = db.get_items(chat)
-        if text == "/done":
-            keyboard = build_keyboard(items)
-            send_message("Select an item to delete", chat, keyboard)
-        elif text == "/start":
-            send_message("Welcome to your personal To Do list. Send any text to me and I'll store it as an item. Send /done to remove items", chat)
-        elif text.startswith("/"):
-            continue
-        elif text in items:
-            db.delete_item(text, chat)
+        try:
+            text = update["message"]["text"]
+            chat = update["message"]["chat"]["id"]
             items = db.get_items(chat)
-            keyboard = build_keyboard(items)
-            send_message("Select an item to delete", chat, keyboard)
-        else:
-            db.add_item(text, chat)
-            items = db.get_items(chat)
-            message = "\n".join(items)
-            send_message(message, chat)
+            if text == "/done":
+                keyboard = build_keyboard(items)
+                send_message("Select an item to delete", chat, keyboard)
+            elif text == "/start":
+                send_message("Welcome to your personal To Do list. Send any text to me and I'll store it as an item. Send /done to remove items", chat)
+            elif text.startswith("/"):
+                continue
+            elif text in items:
+                db.delete_item(text, chat)
+                items = db.get_items(chat)
+                keyboard = build_keyboard(items)
+                send_message("Select an item to delete", chat, keyboard)
+            else:
+                db.add_item(text, chat)
+                items = db.get_items(chat)
+                message = "\n".join(items)
+                send_message(message, chat)
+        except KeyError:
+            pass
 
+"""
 
 #function to reply all messages
-#def echo_all(updates):
-#       for update in updates["result"]:
-#               try:
-#                       text = update["message"]["text"]
-#                       send_message(text)
-#               except Exception as e:
-#                       print(e)
+def echo_all(updates):
+       for update in updates["result"]:
+               try:
+                       text = update["message"]["text"]
+                       send_message(text)
+               except Exception as e:
+                       print(e)
 
+"""
 
 #function asks for text in group chat
 def get_last_chat_id_and_text(updates):
