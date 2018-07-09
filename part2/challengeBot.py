@@ -146,6 +146,7 @@ def main():
     last_update_id = None
     daycount = days_until() + 1
     while True:
+        print("watching you")
         updates = get_updates(last_update_id)
         if len(updates["result"]) > 0:
             last_update_id = get_last_update_id(updates) + 1
