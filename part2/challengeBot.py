@@ -156,10 +156,10 @@ def main():
             handle_updates(updates)
             print("getting updates")
 
-        DAYS_LEFT = days_until()
+        DAYS_LEFT = days_until(chat_id)
         if  DAYS_LEFT < daycount:
             print("counting days:")
-            set_chat_title(-1001138260286, "Tu Dir Was Gutes")
+            set_chat_title(chat_id, "Tu Dir Was Gutes")
             daycount = DAYS_LEFT
         time.sleep(1)
 
