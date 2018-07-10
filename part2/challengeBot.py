@@ -70,14 +70,14 @@ def handle_updates(updates):
             elif text == "/setrules":
                 send_message("Welcome! Please tell me each rule as a single message", chat)
                 db.add_rule(text, chat)
-            elif text.startswith("/"):
+            else text.startswith("/"):
                 continue
             #elif text in rules:
                 #db.delete_rule(text, chat)
                 #rules = db.get_rules(chat)
                 #keyboard = build_keyboard(rules)
                 #send_message("Select an rule to delete", chat, keyboard)
-            else:
+            #else:
         except KeyError:
             pass
 
