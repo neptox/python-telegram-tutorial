@@ -134,7 +134,7 @@ def days_until():
 
 
 #function concatenate api url
-def set_chat_title(chat_id, text):
+def set_chat_title(updates, text):
         for update in updates["result"]:
             chat = update["message"]["chat"]["id"]
         days_left = days_until()
