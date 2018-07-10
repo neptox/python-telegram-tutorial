@@ -63,7 +63,8 @@ def handle_updates(updates):
                 keyboard = build_keyboard(nav)
                 send_message("Select a rule to delete", chat, keyboard)
             elif text == "/rules":
-                send_message("Here are your rules: " + str(rules), chat)
+                test = [[rule] for rule in rules]
+                send_message("Here are your rules: " + str(test), chat)
             elif text == "/setrules":
                 send_message("Welcome! Please tell me each rule as a single message", chat)
             elif text.startswith("/"):
