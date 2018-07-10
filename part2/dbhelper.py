@@ -17,7 +17,7 @@ class DBHelper:
 
         navtblstmt = "CREATE TABLE IF NOT EXISTS nav (description text, owner text)"
         navidx = "CREATE INDEX IF NOT EXISTS navIndex ON nav (description ASC)"
-        navownidx = "CREATE INDEX IF NOT EXISTS ownIndex ON nav (owner ASC)"
+        navownidx = "CREATE INDEX IF NOT EXISTS navownIndex ON nav (owner ASC)"
         self.conn.execute(navtblstmt)
         self.conn.execute(navidx)
         self.conn.execute(navownidx)
