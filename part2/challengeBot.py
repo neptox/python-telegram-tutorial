@@ -63,22 +63,21 @@ def handle_updates(updates):
                 keyboard = build_keyboard(nav)
                 send_message("Select a rule to delete", chat, keyboard)
             elif text == "/rules":
-                test = [[rule] for rule in rules]
-                send_message("Here are your rules: " + str(test), chat)
-            elif text == "/setrules":
-                send_message("Welcome! Please tell me each rule as a single message", chat)
-            elif text.startswith("/"):
-                continue
-            elif text in rules:
-                db.delete_rule(text, chat)
-                rules = db.get_rules(chat)
-                keyboard = build_keyboard(rules)
-                send_message("Select an rule to delete", chat, keyboard)
-            else:
-                db.add_rule(text, chat)
+                #test = [[rule] for rule in rules]
                 rules = db.get_rules(chat)
                 message = "\n".join(rules)
-                send_message(message, chat)
+                send_message("Here are your rules: " + message, chat)
+            elif text == "/setrules":
+                send_message("Welcome! Please tell me each rule as a single message", chat)
+                db.add_rule(text, chat)
+            elif text.startswith("/"):
+                continue
+            #elif text in rules:
+                #db.delete_rule(text, chat)
+                #rules = db.get_rules(chat)
+                #keyboard = build_keyboard(rules)
+                #send_message("Select an rule to delete", chat, keyboard)
+            else:
         except KeyError:
             pass
 
