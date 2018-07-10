@@ -70,7 +70,7 @@ def handle_updates(updates):
             elif text == "/setrules":
                 send_message("Welcome! Please tell me each rule as a single message", chat)
                 db.add_rule(text, chat)
-            else text.startswith("/"):
+            elif text.startswith("/"):
                 continue
             #elif text in rules:
                 #db.delete_rule(text, chat)
