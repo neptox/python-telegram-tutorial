@@ -63,7 +63,7 @@ def handle_updates(updates):
                 keyboard = build_keyboard(nav)
                 send_message("Select a rule to delete", chat, keyboard)
             elif text == "/rules":
-                send_message("Here are your rules: " + rules, chat)
+                send_message("Here are your rules: " + str(rules), chat)
             elif text == "/setrules":
                 send_message("Welcome! Please tell me each rule as a single message", chat)
             elif text.startswith("/"):
@@ -155,7 +155,7 @@ def main():
             last_update_id = get_last_update_id(updates) + 1
             handle_updates(updates)
             print("getting updates")
-            
+
         DAYS_LEFT = days_until()
         if  DAYS_LEFT < daycount:
             print("counting days:")
