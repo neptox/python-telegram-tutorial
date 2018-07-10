@@ -60,7 +60,7 @@ def handle_updates(updates):
             rules = db.get_rules(chat)
             nav = db.get_nav(chat)
             if text == "/done":
-                keyboard = build_keyboard(rules)
+                keyboard = build_keyboard(nav)
                 send_message("Select a rule to delete", chat, keyboard)
             elif text == "/rules":
                 send_message("Here are your rules: " + rules, chat)
