@@ -135,10 +135,12 @@ def days_until():
 
 #function concatenate api url
 def set_chat_title(chat_id, text):
+        for update in updates["result"]:
+            chat = update["message"]["chat"]["id"]
         days_left = days_until()
         title = str(days_left) + " Tage – " + text
         title = urllib.parse.quote_plus(title)
-        url = URL + "setChatTitle?chat_id={}&title={}".format(chat_id, title)
+        url = URL + "setChatTitle?chat_id={}&title={}".format(chat, title)
         get_url(url) #push api request
         print(url)
 
@@ -156,10 +158,10 @@ def main():
             handle_updates(updates)
             print("getting updates")
 
-        DAYS_LEFT = days_until(chat_id)
+        DAYS_LEFT = days_until()
         if  DAYS_LEFT < daycount:
             print("counting days:")
-            set_chat_title(chat_id, "Tu Dir Was Gutes")
+            set_chat_title(updates, "Tu Dir Was Gutes")
             daycount = DAYS_LEFT
         time.sleep(1)
 
