@@ -57,23 +57,26 @@ def handle_updates(updates):
         try:
             text = update["message"]["text"]
             chat = update["message"]["chat"]["id"]
-            items = db.get_items(chat)
+            rules = db.get_rules(chat)
+            nav = db.get_nav(chat)
             if text == "/done":
-                keyboard = build_keyboard(items)
-                send_message("Select an item to delete", chat, keyboard)
-            elif text == "/start":
-                send_message("Welcome to your personal To Do list. Send any text to me and I'll store it as an item. Send /done to remove items", chat)
+                keyboard = build_keyboard(rules)
+                send_message("Select a rule to delete", chat, keyboard)
+            elif text == "/rules":
+                send_message("Here are your rules: " + rules, chat)
+            elif text == "/setRules":
+                send_message("Welcome! Please tell me each rule as a single message", chat)
             elif text.startswith("/"):
                 continue
-            elif text in items:
-                db.delete_item(text, chat)
-                items = db.get_items(chat)
-                keyboard = build_keyboard(items)
-                send_message("Select an item to delete", chat, keyboard)
+            elif text in rules:
+                db.delete_rule(text, chat)
+                rules = db.get_rules(chat)
+                keyboard = build_keyboard(rules)
+                send_message("Select an rule to delete", chat, keyboard)
             else:
-                db.add_item(text, chat)
-                items = db.get_items(chat)
-                message = "\n".join(items)
+                db.add_rule(text, chat)
+                rules = db.get_rules(chat)
+                message = "\n".join(rules)
                 send_message(message, chat)
         except KeyError:
             pass
@@ -100,8 +103,8 @@ def get_last_chat_id_and_text(updates):
     return (text, chat_id)
 
 # function label keys in Telegram
-def build_keyboard(items):
-    keyboard = [[item] for item in items]
+def build_keyboard(rules):
+    keyboard = [[rule] for rule in rules]
     reply_markup = {"keyboard":keyboard, "one_time_keyboard": True}
     return json.dumps(reply_markup)
 
