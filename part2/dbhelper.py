@@ -41,6 +41,14 @@ class DBHelper:
         args = (owner, )
         return [x[0] for x in self.conn.execute(stmt, args)]
 
+
+
+    def add_nav(self, nav_text, owner):
+        stmt = "INSERT INTO nav (description, owner) VALUES (?, ?)"
+        args = (nav_text, owner)
+        self.conn.execute(stmt, args)
+        self.conn.commit()
+
     def get_nav(self, owner):
         stmt = "SELECT description FROM nav WHERE owner = (?)"
         args = (owner, )

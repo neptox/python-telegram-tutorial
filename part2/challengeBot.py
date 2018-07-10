@@ -61,7 +61,7 @@ def handle_updates(updates):
             nav = db.get_nav(chat)
             if text == "/done":
                 keyboard = build_keyboard(nav)
-                send_message("Select a rule to delete", chat, keyboard)
+                send_message("What to do?", chat, keyboard)
             elif text == "/rules":
                 #test = [[rule] for rule in rules]
                 rules = db.get_rules(chat)
@@ -70,13 +70,16 @@ def handle_updates(updates):
             elif text == "/setrules":
                 send_message("Welcome! Please tell me each rule as a single message", chat)
                 db.add_rule(text, chat)
+            elif text == "/setnav":
+                send_message("Welcome! Please tell me each command as a single message", chat)
+                db.add_nav(text, chat)
             elif text.startswith("/"):
                 continue
-            #elif text in rules:
-                #db.delete_rule(text, chat)
-                #rules = db.get_rules(chat)
-                #keyboard = build_keyboard(rules)
-                #send_message("Select an rule to delete", chat, keyboard)
+            elif text in nav:
+                #db.delete_nav(text, chat)
+                nav = db.get_nav(chat)
+                keyboard = build_keyboard(nav)
+                send_message("Select a command", chat, keyboard)
             #else:
         except KeyError:
             pass
@@ -120,9 +123,9 @@ def send_message(text, chat_id, reply_markup=None):
 #----------------------
 
 #function remaining days in challenge
-def days_until():
+def days_until(endDate):
         today = datetime.datetime.today()
-        end = datetime.datetime.strptime(END, "%d.%m.%y")
+        end = datetime.datetime.strptime(end, "%d.%m.%y")
         delta = today - end
 
         if delta.days >= 0:
