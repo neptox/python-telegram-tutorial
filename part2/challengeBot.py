@@ -123,9 +123,9 @@ def send_message(text, chat_id, reply_markup=None):
 #----------------------
 
 #function remaining days in challenge
-def days_until(endDate):
+def days_until():
         today = datetime.datetime.today()
-        end = datetime.datetime.strptime(end, "%d.%m.%y")
+        end = datetime.datetime.strptime(END, "%d.%m.%y")
         delta = today - end
 
         if delta.days >= 0:
