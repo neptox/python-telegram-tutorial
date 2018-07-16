@@ -69,6 +69,7 @@ def handle_updates(updates):
             elif text == "/setend":
                 send_message("Which will be the last day of this challenge (dd.mm.yy): ", chat)
                 END = text;
+                send_message("Ok this challenge will go until: " + text, chat)
             elif text == "/setnav":
                 send_message("Welcome! Please tell me each /command as a single message", chat)
 
