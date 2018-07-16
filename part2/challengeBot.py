@@ -1,7 +1,3 @@
-
-# challengeBot @jeremias
-
-#import libraries
 import json
 import requests
 import urllib
@@ -17,7 +13,7 @@ db = DBHelper()
 # set arguments for Telegram bot: @ChaIIengeBot
 TOKEN = config.token
 URL = "https://api.telegram.org/bot{}/".format(TOKEN)
-END = "25.07.18"
+END = "26.07.18"
 DAYS_LEFT = 0
 COMMAND = ""
 
@@ -70,11 +66,15 @@ def handle_updates(updates):
             elif text == "/setrules":
                 send_message("Welcome! Please tell me each rule as a single message", chat)
                 db.add_rule(text, chat)
+            elif text == "/setend":
+                send_message("Which will be the last day of this challenge (dd.mm.yy): ", chat)
+                END = text;
             elif text == "/setnav":
-                send_message("Welcome! Please tell me each command as a single message", chat)
-                db.add_nav(text, chat)
+                send_message("Welcome! Please tell me each /command as a single message", chat)
+
             elif text.startswith("/"):
-                continue
+                db.add_nav(text, chat)
+                #continue
             elif text in nav:
                 #db.delete_nav(text, chat)
                 nav = db.get_nav(chat)
