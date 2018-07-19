@@ -66,10 +66,12 @@ def handle_updates(updates):
                 message = "\n".join(rules)
                 send_message("Here are your rules: " + message, chat)
             elif text == "/setrule":
-                send_message("Welcome! Please tell me each rule as a single message and then type /done", chat)
                 newRulesComing = True
+                print(newRulesComing)
+                send_message("Welcome! Please tell me each rule as a single message and then type /done", chat)
 
             elif newRulesComing == True:
+                print("test")
                 db.add_rule(text, chat)
                 send_message("Ok, type another one or /done", chat)
 
