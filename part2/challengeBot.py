@@ -69,7 +69,7 @@ def handle_updates(updates):
                 send_message("Welcome! Please tell me each rule as a single message and then type /done", chat)
                 newRulesComing = True
 
-            elif newRulesComing:
+            elif newRulesComing == True:
                 db.add_rule(text, chat)
                 send_message("Ok, type another one or /done", chat)
 
