@@ -55,7 +55,7 @@ def handle_updates(updates):
             chat = update["message"]["chat"]["id"]
             rules = db.get_rules(chat)
             nav = db.get_nav(chat)
-            if text == "/done":
+            if text == "/keyboard":
                 keyboard = build_keyboard(nav)
                 send_message("What to do?", chat, keyboard)
             elif text == "/rules":
@@ -64,11 +64,15 @@ def handle_updates(updates):
                 message = "\n".join(rules)
                 send_message("Here are your rules: " + message, chat)
             elif text == "/setrules":
-                send_message("Welcome! Please tell me each rule as a single message", chat)
-                db.add_rule(text, chat)
+                send_message("Welcome! Please tell me each rule as a single message and then type /done", chat)
+                while text != "/done":
+                    text = update["message"]["text"]
+                    db.add_rule(text, chat)
+                send_message("Wonderfull! Check your rules with the /rules command", chat)
+                
             elif text == "/setend":
                 send_message("Which will be the last day of this challenge (dd.mm.yy): ", chat)
-                
+
                 send_message("Ok this challenge will go until: " + text, chat)
             elif text == "/setnav":
                 send_message("Welcome! Please tell me each /command as a single message", chat)
