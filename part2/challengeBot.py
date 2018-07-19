@@ -65,7 +65,7 @@ def handle_updates(updates):
                 send_message("Here are your rules: " + message, chat)
             elif text == "/setrules":
                 send_message("Welcome! Please tell me each rule as a single message and then type /done", chat)
-                while text != "/done":
+                while update["message"]["text"] != "/done":
                     text = update["message"]["text"]
                     db.add_rule(text, chat)
                     send_message("Ok, type another one or /done", chat)
