@@ -19,6 +19,9 @@ COMMAND = ""
 
 #-----------------------
 
+    newRulesComing = False
+    newNavElementsComing = False
+
 #function push and pull Telegram bot api
 def get_url(url):
     response = requests.get(url)
@@ -49,8 +52,6 @@ def get_last_update_id(updates):
 
 #handle updates
 def handle_updates(updates):
-    newRulesComing = False
-    newNavElementsComing = False
     for update in updates["result"]:
         try:
             text = update["message"]["text"]
@@ -65,7 +66,7 @@ def handle_updates(updates):
                 rules = db.get_rules(chat)
                 message = "\n".join(rules)
                 send_message("Here are your rules: " + message, chat)
-            elif text == "/setrule":
+            elif text == "/setrules":
                 newRulesComing = True
                 print(newRulesComing)
                 send_message("Welcome! Please tell me each rule as a single message and then type /done", chat)
