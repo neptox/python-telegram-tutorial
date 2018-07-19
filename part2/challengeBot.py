@@ -68,8 +68,9 @@ def handle_updates(updates):
                 while text != "/done":
                     text = update["message"]["text"]
                     db.add_rule(text, chat)
+                    send_message("Ok, type another one or /done", chat)
                 send_message("Wonderfull! Check your rules with the /rules command", chat)
-                
+
             elif text == "/setend":
                 send_message("Which will be the last day of this challenge (dd.mm.yy): ", chat)
 
