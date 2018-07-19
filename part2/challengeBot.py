@@ -19,8 +19,8 @@ COMMAND = ""
 
 #-----------------------
 
-    newRulesComing = False
-    newNavElementsComing = False
+newRulesComing = False
+newNavElementsComing = False
 
 #function push and pull Telegram bot api
 def get_url(url):
