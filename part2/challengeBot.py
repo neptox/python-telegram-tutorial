@@ -49,6 +49,8 @@ def get_last_update_id(updates):
 
 #handle updates
 def handle_updates(updates):
+    newRulesComing = False
+    newNavElementsComing = False
     for update in updates["result"]:
         try:
             text = update["message"]["text"]
@@ -65,11 +67,16 @@ def handle_updates(updates):
                 send_message("Here are your rules: " + message, chat)
             elif text == "/setrules":
                 send_message("Welcome! Please tell me each rule as a single message and then type /done", chat)
-                while update["message"]["text"] != "/done":
-                    text = update["message"]["text"]
-                    db.add_rule(text, chat)
-                    send_message("Ok, type another one or /done", chat)
-                send_message("Wonderfull! Check your rules with the /rules command", chat)
+                newRulesComing = True
+
+            elif newRulesComing:
+                db.add_rule(text, chat)
+                send_message("Ok, type another one or /done", chat)
+
+            elif text == "/done":
+                newRulesComing = False
+                #newNavElementsComing = False
+                send_message("Perfect, thank you!", chat)
 
             elif text == "/setend":
                 send_message("Which will be the last day of this challenge (dd.mm.yy): ", chat)
